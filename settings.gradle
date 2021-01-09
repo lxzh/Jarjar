@@ -1,0 +1,3 @@
+include ':jarjar'
+include ':app'
+rootProject.name = "Jarjar-fork"

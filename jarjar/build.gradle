@@ -1,0 +1,38 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jar {
+    //项目名，也是生成的jar的名字
+    baseName = "jarjar"
+    //项目版本号，这部分内容会写进manifest
+    version = "1.4.1"
+    //项目的manifest定义，其中就包含最关键的入口类定义
+    manifest { attributes 'Main-Class': 'com.tonicsystems.jarjar.Main' }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+//将src文件夹中的资源文件同时打包
+processResources {
+    from('src/main/java') {
+        include 'com/tonicsystems/jarjar/*.txt'
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile files('libs/asm-5.0.2.jar')
+    compile files('libs/asm-commons-5.0.2.jar')
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.apache.maven.plugins:maven-antrun-plugin:1.8'
+}

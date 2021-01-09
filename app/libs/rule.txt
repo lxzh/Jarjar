@@ -1,0 +1,1 @@
+rule com.tonicsystems.jarjar.** com.lxzh123.jarjar.@1

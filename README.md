@@ -1,0 +1,1 @@
+Fork of [jarjar](https://code.google.com/archive/p/jarjar/), add support for Java8 with asm-5.0.2.
